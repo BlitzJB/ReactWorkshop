@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="counter1">0</div>
+    <div id="counter2">Counter value is: 0</div>
+    <div id="counter3">Value: 0</div>
+    <button id="button">asdasd</button>
+
+    <script>
+        const button = document.getElementById('button');
+        const couter1 = document.getElementById('counter1');
+        const couter2 = document.getElementById('counter2');
+        const couter3 = document.getElementById('counter3');
+
+        const useState = (initialValue) => {
+            let value = initialValue;
+            let dependencies = [];
+
+            const setValue = (newValue) => {
+                value = newValue
+                dependencies.forEach((dependency) => {
+                    dependency();
+                })
+            }
+
+            const getValue = () => {
+                return value;
+            }
+
+            const addDependecies = (newDependencies) => {
+                dependencies = [...dependencies, ...newDependencies];
+            }
+
+            return [getValue, setValue, addDependecies]
+        } 
+
+        let [value, setValue, addDependecies] = useState(0);
+
+        const updateCounter1 = () => {
+            couter1.innerHTML = value();
+        }
+
+        const updateCounter2 = () => {
+            couter2.innerHTML = `Counter value is: ${value()}`;
+        }
+
+        const updateCounter3 = () => {
+            couter3.innerHTML = `Value: ${value()}`;
+        }
+
+        addDependecies([updateCounter1, updateCounter2, updateCounter3]);
+
+
+        button.addEventListener("click", () => {
+            setValue(value() + 1);
+        })
+
+    </script>
+
+</body>
+</html>
