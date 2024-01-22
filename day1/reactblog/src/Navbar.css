@@ -1,0 +1,16 @@
+.nav-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-logo {
+    margin-right: 50px;
+}
+
+.nav-links {
+    flex-grow: 1;
+}
+
+.nav-link {
+    margin-right: 20px;
+}

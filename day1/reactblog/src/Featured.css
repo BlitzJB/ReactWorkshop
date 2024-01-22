@@ -1,0 +1,7 @@
+.featured {
+    display: flex;
+}
+
+.post {
+    margin-right: 20px;
+}
